@@ -13,14 +13,15 @@ public class Main extends Application {
         FXMLLoader loader=new FXMLLoader(getClass().getResource("/FXMLS/initialPage.fxml"));
         Parent root=loader.load();
         InitialController controller=loader.getController();
-        /*ClientManage client=new ClientManage();
+        ClientManage client=new ClientManage();
         if(client.start()){
             System.out.println("Client connected successfully.");
         }
         else{
             System.out.println("Client failed to connect.");
             return;
-        }*/
+        }
+        controller.setClient(client);
         primaryStage.setTitle("Car Ware House");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

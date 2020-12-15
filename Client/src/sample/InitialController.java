@@ -17,8 +17,17 @@ public class InitialController {
     @FXML
     Button reset,login;
 
+    ClientManage client;
+
     public void onResetPressed(ActionEvent actionEvent){
         username.clear();
         password.clear();
+    }
+    public void onLoginPresses(ActionEvent actionEvent){
+
+    }
+    public void setClient(ClientManage client)
+    {
+        this.client=client;
     }
 }
