@@ -24,6 +24,7 @@ public class Main extends Application {
         controller.setClient(client);
         primaryStage.setTitle("Car Ware House");
         primaryStage.setScene(new Scene(root));
+        controller.setStage(primaryStage);
         primaryStage.show();
     }
 

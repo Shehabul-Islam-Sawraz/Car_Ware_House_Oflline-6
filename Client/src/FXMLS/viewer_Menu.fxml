@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="320.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.viewerMenuController">
+   <children>
+      <Label layoutX="168.0" layoutY="21.0" text="Select a Option">
+         <font>
+            <Font name="System Bold Italic" size="26.0" />
+         </font>
+      </Label>
+      <Label layoutX="168.0" layoutY="40.0" text="_____________________________________">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="60.0" layoutY="77.0" text="1.">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Button fx:id="viewAll" layoutX="87.0" layoutY="78.0" mnemonicParsing="false" onAction="#viewAllPressed" prefHeight="29.0" prefWidth="185.0" text="View All Cars">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Label layoutX="60.0" layoutY="128.0" text="2.">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Button fx:id="searchReg" layoutX="87.0" layoutY="129.0" mnemonicParsing="false" onAction="#searchRegPressed" prefHeight="29.0" prefWidth="185.0" text="Search By Registration">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Label layoutX="60.0" layoutY="180.0" text="3.">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Button fx:id="searchModel" layoutX="87.0" layoutY="181.0" mnemonicParsing="false" onAction="#searchModelPressed" prefHeight="29.0" prefWidth="185.0" text="Search By Make and Model">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Label layoutX="60.0" layoutY="231.0" text="4.">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Button fx:id="buyCar" layoutX="87.0" layoutY="232.0" mnemonicParsing="false" onAction="#buyCarPressed" prefHeight="29.0" prefWidth="185.0" text="Buy a Car">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

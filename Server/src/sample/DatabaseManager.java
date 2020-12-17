@@ -1,6 +1,8 @@
 package sample;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseManager {
     Connection connection;
@@ -37,7 +39,7 @@ public class DatabaseManager {
             " SET "+PRICE_COLUMN+" = ? "+ " WHERE "+REG_COLUMN+" = ?";
     private static String Delete_Car_By_Reg= "DELETE FROM "+CAR_INFO_TABLE+" WHERE "+REG_COLUMN+" =?";
     private static String Get_Car_Info_By_Reg="SELECT "+YEAR_COLUMN+" "+COLOR1_COLUMN+" "+COLOR2_COLUMN+" "+COLOR3_COLUMN+" "+MAKE_COLUMN+" "+MODEL_COLUMN+" "+PRICE_COLUMN+" FROM "+CAR_INFO_TABLE+" WHERE "+REG_COLUMN+" =?";
-
+    private static String Get_All_Cars="SELECT * FROM "+ CAR_INFO_TABLE;
 
     public DatabaseManager(){}
     public void open(){
@@ -47,6 +49,7 @@ public class DatabaseManager {
             System.out.println("Database opened successfully.");
         } catch(Exception e) {
             System.out.println("Database can't be opened successfully.");
+            e.printStackTrace();
         }
     }
     public void close()
@@ -190,11 +193,23 @@ public class DatabaseManager {
             PreparedStatement preparedStatement=connection.prepareStatement(Delete_Car_By_Reg);
             preparedStatement.setString(1,reg);
             preparedStatement.execute();
-            System.out.println("Car Info Deleted Successfully");
             return true;
         } catch(SQLException e) {
             System.out.println("Failed to delete the car info..."+e.getMessage());
             return false;
         }
+    }
+    public List<String> getAllCars(){
+        List<String> cars=new ArrayList<>();
+        try{
+            PreparedStatement preparedStatement=connection.prepareStatement(Get_All_Cars);
+            ResultSet resultSet=preparedStatement.executeQuery();
+            while(resultSet.next()){
+                cars.add(resultSet.getString(1)+"/"+Integer.toString(resultSet.getInt(2))+"/"+resultSet.getString(3)+"/"+resultSet.getString(4)+"/"+resultSet.getString(5)+"/"+resultSet.getString(6)+"/"+resultSet.getString(7)+"/"+Integer.toString(resultSet.getInt(8)));
+            }
+        } catch(SQLException e) {
+            System.out.println("Can't return all cars info.");
+        }
+        return cars;
     }
 }

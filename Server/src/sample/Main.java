@@ -15,11 +15,11 @@ public class Main {
         try {
             ServerSocket socket=new ServerSocket(5000);
             System.out.println("Server created successfully.");
+            MessageHandler handler=new MessageHandler();
             while (true){
                 Socket s=socket.accept();
                 System.out.println("Server initialized successfully for the client.");
-                ServerThread thread=new ServerThread(s);
-                thread.start();
+                handler.handleTemporarily(s);
             }
         } catch (IOException e) {
             System.out.println("Server can't be initialized.");
