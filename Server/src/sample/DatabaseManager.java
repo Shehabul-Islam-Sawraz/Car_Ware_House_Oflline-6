@@ -38,7 +38,7 @@ public class DatabaseManager {
             " SET "+MAKE_COLUMN+" = ? "+ " SET "+MODEL_COLUMN+" = ? "+
             " SET "+PRICE_COLUMN+" = ? "+ " WHERE "+REG_COLUMN+" = ?";
     private static String Delete_Car_By_Reg= "DELETE FROM "+CAR_INFO_TABLE+" WHERE "+REG_COLUMN+" =?";
-    private static String Get_Car_Info_By_Reg="SELECT "+YEAR_COLUMN+" "+COLOR1_COLUMN+" "+COLOR2_COLUMN+" "+COLOR3_COLUMN+" "+MAKE_COLUMN+" "+MODEL_COLUMN+" "+PRICE_COLUMN+" FROM "+CAR_INFO_TABLE+" WHERE "+REG_COLUMN+" =?";
+    private static String Get_Car_Info_By_Reg="SELECT "+YEAR_COLUMN+", "+COLOR1_COLUMN+", "+COLOR2_COLUMN+", "+COLOR3_COLUMN+", "+MAKE_COLUMN+", "+MODEL_COLUMN+", "+PRICE_COLUMN+" FROM "+CAR_INFO_TABLE+" WHERE "+REG_COLUMN+" =?";
     private static String Get_All_Cars="SELECT * FROM "+ CAR_INFO_TABLE;
 
     public DatabaseManager(){}
@@ -166,7 +166,8 @@ public class DatabaseManager {
             String message=reg+"/"+Integer.toString(resultSet.getInt(1))+"/"+resultSet.getString(2)+"/"+resultSet.getString(3)+"/"+resultSet.getString(4)+"/"+resultSet.getString(5)+"/"+resultSet.getString(6)+"/"+Integer.toString(resultSet.getInt(7));
             return message;
         } catch (SQLException e) {
-            System.out.println("Can't return any car with this make and model for the user...\n"+e.getMessage());
+            e.printStackTrace();
+            System.out.println("Can't return any car with this reg. no. for the user...\n"+e.getMessage());
             return "";
         }
     }

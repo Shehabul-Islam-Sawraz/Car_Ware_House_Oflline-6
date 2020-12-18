@@ -56,7 +56,7 @@ public class MessageHandler {
         }
         else{
             System.out.println("Car not found with this registration number.");
-            return null;
+            return "null";
         }
     }
     public String searchCarByMakeModel(String message){

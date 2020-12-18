@@ -33,8 +33,18 @@ public class viewerMenuController implements Initializable {
         primaryStage.show();
     }
 
-    public void searchRegPressed(ActionEvent actionEvent){
+    public void searchRegPressed(ActionEvent actionEvent) throws IOException {
         //Car search korbe reg number die and onno fxml e jabe
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("../FXMLS/search_Reg.fxml"));
+        Parent root=loader.load();
+        searchRegController controller=loader.getController();
+        Stage primaryStage=new Stage();
+        controller.setClient(client);
+        primaryStage.setTitle("Search By Registration");
+        primaryStage.setScene(new Scene(root));
+        controller.setStage(primaryStage);
+        stage.close();
+        primaryStage.show();
     }
 
     public void searchModelPressed(ActionEvent actionEvent){

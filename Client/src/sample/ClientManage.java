@@ -16,6 +16,7 @@ public class ClientManage implements Runnable {
     DataOutputStream dos;
     Thread t;
     public List<String> info=new ArrayList<>();
+    String mesg="";
 
     ClientManage(){}
 
@@ -118,11 +119,15 @@ public class ClientManage implements Runnable {
                 break;
 
             case "searchReg":
-                if(strings[1].equals("Reg_Not_found")){
-                    createAlert("Can't Find Any Car With the Registration Number");
+                if(strings[1].equals("Reg_Not_Found")){
+                    //createAlert("Can't Find Any Car With the Registration Number");
+                    mesg="Car_Not_Found";
+                    System.out.println("Mesg set to: "+mesg);
                 }
                 else{
                     //Car Info show korbe oi reg number er
+                    mesg=message;
+                    System.out.println("Mesg set to: "+mesg);
                 }
                 break;
 
@@ -146,6 +151,10 @@ public class ClientManage implements Runnable {
                 }
                 break;
         }
+    }
+
+    public String getMesg(){
+        return mesg;
     }
 
     private void createAlert(String message) {

@@ -73,7 +73,7 @@ public class ServerThread implements Runnable{
                 }
                 else if(strings[0].equals("searchReg")){
                     String carInfo=handler.searchCarByReg(msg);
-                    if(!carInfo.equals(null)){
+                    if(!carInfo.equals("null")){
                         sendToClient("searchReg/"+carInfo);
                     }
                     else{
