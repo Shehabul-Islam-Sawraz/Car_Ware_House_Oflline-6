@@ -82,8 +82,13 @@ public class ServerThread implements Runnable{
                 }
                 else if(strings[0].equals("searchModel")){
                     String carInfo=handler.searchCarByMakeModel(msg);
-                    if(!carInfo.equals(null)){
-                        sendToClient("searchModel/"+carInfo);
+                    if(!carInfo.equals("null")){
+                        String[] inf=carInfo.split("]");
+                        sendToClient("carNumber/"+inf.length);
+                        for(String out: inf){
+                            sendToClient("searchModel/"+out);
+                            Thread.sleep(50);
+                        }
                     }
                     else{
                         sendToClient("searchModel/Model_Not_Found");
@@ -99,6 +104,7 @@ public class ServerThread implements Runnable{
                 }
                 else if(strings[0].equals("carsInfo")){
                     List<String> cars=new ArrayList<>();
+                    dos.flush();
                     cars=handler.getCarsInfo();
                     for(String message:cars){
                         sendToClient("cars/"+message);

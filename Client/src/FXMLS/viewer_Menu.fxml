@@ -16,44 +16,49 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="60.0" layoutY="77.0" text="1.">
+      <Label layoutX="40.0" layoutY="71.0" text="1.">
          <font>
             <Font size="21.0" />
          </font>
       </Label>
-      <Button fx:id="viewAll" layoutX="87.0" layoutY="78.0" mnemonicParsing="false" onAction="#viewAllPressed" prefHeight="29.0" prefWidth="185.0" text="View All Cars">
+      <Button fx:id="viewAll" layoutX="67.0" layoutY="72.0" mnemonicParsing="false" onAction="#viewAllPressed" prefHeight="29.0" prefWidth="185.0" text="View All Cars">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <Label layoutX="60.0" layoutY="128.0" text="2.">
+      <Label layoutX="40.0" layoutY="122.0" text="2.">
          <font>
             <Font size="21.0" />
          </font>
       </Label>
-      <Button fx:id="searchReg" layoutX="87.0" layoutY="129.0" mnemonicParsing="false" onAction="#searchRegPressed" prefHeight="29.0" prefWidth="185.0" text="Search By Registration">
+      <Button fx:id="searchReg" layoutX="67.0" layoutY="123.0" mnemonicParsing="false" onAction="#searchRegPressed" prefHeight="29.0" prefWidth="185.0" text="Search By Registration">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <Label layoutX="60.0" layoutY="180.0" text="3.">
+      <Label layoutX="40.0" layoutY="174.0" text="3.">
          <font>
             <Font size="21.0" />
          </font>
       </Label>
-      <Button fx:id="searchModel" layoutX="87.0" layoutY="181.0" mnemonicParsing="false" onAction="#searchModelPressed" prefHeight="29.0" prefWidth="185.0" text="Search By Make and Model">
+      <Button fx:id="searchModel" layoutX="67.0" layoutY="175.0" mnemonicParsing="false" onAction="#searchModelPressed" prefHeight="29.0" prefWidth="185.0" text="Search By Make and Model">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <Label layoutX="60.0" layoutY="231.0" text="4.">
+      <Label layoutX="40.0" layoutY="225.0" text="4.">
          <font>
             <Font size="21.0" />
          </font>
       </Label>
-      <Button fx:id="buyCar" layoutX="87.0" layoutY="232.0" mnemonicParsing="false" onAction="#buyCarPressed" prefHeight="29.0" prefWidth="185.0" text="Buy a Car">
+      <Button fx:id="buyCar" layoutX="67.0" layoutY="226.0" mnemonicParsing="false" onAction="#buyCarPressed" prefHeight="29.0" prefWidth="185.0" text="Buy a Car">
          <font>
             <Font size="13.0" />
+         </font>
+      </Button>
+      <Button layoutX="417.0" layoutY="274.0" mnemonicParsing="false" onAction="#logOutPressed" text="Log Out">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
          </font>
       </Button>
    </children>

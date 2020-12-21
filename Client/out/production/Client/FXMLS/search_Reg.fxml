@@ -4,18 +4,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="320.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.searchRegController">
+<AnchorPane prefHeight="340.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.searchRegController">
    <children>
-      <Label layoutX="22.0" layoutY="42.0" text="Enter Registration Number:">
+      <Label layoutX="22.0" layoutY="32.0" text="Enter Registration Number:">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <TextField fx:id="regNo" layoutX="250.0" layoutY="44.0" prefHeight="25.0" prefWidth="220.0" />
-      <ListView fx:id="listView" layoutX="95.0" layoutY="120.0" prefHeight="170.0" prefWidth="330.0" />
-      <Button fx:id="search" layoutX="220.0" layoutY="80.0" mnemonicParsing="false" onAction="#searchButtonPressed" prefHeight="25.0" prefWidth="60.0" text="Search">
+      <TextField fx:id="regNo" layoutX="250.0" layoutY="34.0" prefHeight="25.0" prefWidth="220.0" />
+      <ListView fx:id="listView" layoutX="95.0" layoutY="114.0" prefHeight="170.0" prefWidth="330.0" />
+      <Button fx:id="search" layoutX="220.0" layoutY="71.0" mnemonicParsing="false" onAction="#searchButtonPressed" prefHeight="25.0" prefWidth="60.0" text="Search">
          <font>
             <Font name="System Italic" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="442.0" layoutY="295.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="25.0" prefWidth="60.0" text="Back">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
          </font>
       </Button>
    </children>

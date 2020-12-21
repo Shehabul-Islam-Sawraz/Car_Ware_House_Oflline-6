@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="320.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.manufacturerMenuController">
+   <children>
+      <Label layoutX="186.0" layoutY="16.0" text="Select a Option">
+         <font>
+            <Font name="Bell MT Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="173.0" layoutY="30.0" text="___________________________________" />
+      <Label layoutX="43.0" layoutY="68.0" text="1.">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="viewAll" layoutX="71.0" layoutY="67.0" mnemonicParsing="false" onAction="#viewAllButtonPressed" prefHeight="25.0" prefWidth="175.0" text="View All Cars">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Label layoutX="43.0" layoutY="119.0" text="2.">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="addCar" layoutX="71.0" layoutY="118.0" mnemonicParsing="false" onAction="#addButtonPressed" prefHeight="25.0" prefWidth="175.0" text="Add a Car">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Button layoutX="408.0" layoutY="269.0" mnemonicParsing="false" onAction="#logOutPressed" prefHeight="25.0" prefWidth="69.0" text="Log Out">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

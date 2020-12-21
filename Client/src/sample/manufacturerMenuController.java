@@ -11,62 +11,40 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class viewerMenuController implements Initializable {
+public class manufacturerMenuController implements Initializable {
     @FXML
-    Button viewAll,searchReg,searchModel,buyCar;
+    Button viewAll,addCar;
     Stage stage;
     ClientManage client;
-    public void viewAllPressed(ActionEvent actionEvent) throws IOException {
-        //Shob car er info dekhabe and onno ekta fxml e jabe
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("../FXMLS/viewAllCars.fxml"));
+
+    public void viewAllButtonPressed(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("../FXMLS/manufacturerAllCars.fxml"));
         Parent root=loader.load();
-        viewAllCarsController controller=loader.getController();
+        manufacturerAllCarsController controller=loader.getController();
         Stage primaryStage=new Stage();
         controller.setClient(client);
-        //client.setController2(controller);
+        client.setController(controller);
         primaryStage.setTitle("All Cars Information");
         primaryStage.setScene(new Scene(root));
         controller.setStage(primaryStage);
         stage.close();
-        //client.info=new ArrayList<>();
-        //client.sendToServer("carsInfo/e");
         controller.setCarsInfoInListView();
         primaryStage.show();
     }
 
-    public void searchRegPressed(ActionEvent actionEvent) throws IOException {
-        //Car search korbe reg number die and onno fxml e jabe
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("../FXMLS/search_Reg.fxml"));
+    public void addButtonPressed(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("../FXMLS/addCarManufacturer.fxml"));
         Parent root=loader.load();
-        searchRegController controller=loader.getController();
+        addCarController controller=loader.getController();
         Stage primaryStage=new Stage();
         controller.setClient(client);
-        primaryStage.setTitle("Search By Registration");
+        primaryStage.setTitle("Edit Car Information");
         primaryStage.setScene(new Scene(root));
         controller.setStage(primaryStage);
         stage.close();
         primaryStage.show();
-    }
-
-    public void searchModelPressed(ActionEvent actionEvent) throws IOException {
-        // Car search korbe model make number die and onno fxml e jabe
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("../FXMLS/searchMakeModel.fxml"));
-        Parent root=loader.load();
-        searchMakeModelController controller=loader.getController();
-        Stage primaryStage=new Stage();
-        controller.setClient(client);
-        primaryStage.setTitle("Search By Make & Model");
-        primaryStage.setScene(new Scene(root));
-        controller.setStage(primaryStage);
-        stage.close();
-        primaryStage.show();
-    }
-
-    public void buyCarPressed(ActionEvent actionEvent){
-
     }
 
     public void logOutPressed(ActionEvent actionEvent) throws IOException {
@@ -90,7 +68,6 @@ public class viewerMenuController implements Initializable {
         this.client=client;
         System.out.println("Size of array in menuController is: "+client.info.size());
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

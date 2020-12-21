@@ -7,7 +7,7 @@ import java.util.List;
 public class DatabaseManager {
     Connection connection;
     private static final String DATABASE_PATH = "jdbc:sqlite:src\\sample\\";
-    private static final String DATABASE_NAME = "manufacturer_info.db";
+    //private static final String DATABASE_NAME = "manufacturer_info.db";
     private static final String MANUFACTURER_INFO_TABLE = "manufacturer_info";
     private static final String CAR_DATABASE_NAME = "car_info.db";
     private static final String CAR_INFO_TABLE = "car_info";
@@ -31,12 +31,19 @@ public class DatabaseManager {
     private static final String Insert_New_Car = "INSERT INTO "+CAR_INFO_TABLE+" ( " +
             REG_COLUMN+", "+YEAR_COLUMN+", "+COLOR1_COLUMN+", "+COLOR2_COLUMN +", "+COLOR3_COLUMN+", "+MAKE_COLUMN+", "+MODEL_COLUMN+", "+PRICE_COLUMN+") VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String Find_Car_By_Make_Model= "SELECT COUNT(*) FROM "+CAR_INFO_TABLE+" WHERE "+MAKE_COLUMN+" = ? AND "+ MODEL_COLUMN+" =?";
+
+
     private static final String Find_Reg_By_Make_Model= "SELECT "+REG_COLUMN+" FROM "+ CAR_INFO_TABLE+" WHERE "+MAKE_COLUMN+" = ? AND "+ MODEL_COLUMN+" =?";
+
+
     private static final String Update_Car_By_Reg_Num= "UPDATE "+CAR_INFO_TABLE+
-            " SET "+YEAR_COLUMN+" = ? "+ " SET "+COLOR1_COLUMN+" = ? "+
-            " SET "+COLOR2_COLUMN+" = ? "+ " SET "+COLOR3_COLUMN+" = ? "+
-            " SET "+MAKE_COLUMN+" = ? "+ " SET "+MODEL_COLUMN+" = ? "+
-            " SET "+PRICE_COLUMN+" = ? "+ " WHERE "+REG_COLUMN+" = ?";
+            " SET "+YEAR_COLUMN+" = ?,"+COLOR1_COLUMN+" = ?,"
+            + COLOR2_COLUMN+" = ?,"+COLOR3_COLUMN+" = ?,"
+            +MAKE_COLUMN+" = ?,"+MODEL_COLUMN+" = ?,"
+            +PRICE_COLUMN+" = ?"+ " WHERE "+REG_COLUMN+" = ?";
+
+
+
     private static String Delete_Car_By_Reg= "DELETE FROM "+CAR_INFO_TABLE+" WHERE "+REG_COLUMN+" =?";
     private static String Get_Car_Info_By_Reg="SELECT "+YEAR_COLUMN+", "+COLOR1_COLUMN+", "+COLOR2_COLUMN+", "+COLOR3_COLUMN+", "+MAKE_COLUMN+", "+MODEL_COLUMN+", "+PRICE_COLUMN+" FROM "+CAR_INFO_TABLE+" WHERE "+REG_COLUMN+" =?";
     private static String Get_All_Cars="SELECT * FROM "+ CAR_INFO_TABLE;
@@ -44,7 +51,6 @@ public class DatabaseManager {
     public DatabaseManager(){}
     public void open(){
         try{
-            connection= DriverManager.getConnection(DATABASE_PATH+DATABASE_NAME);
             connection= DriverManager.getConnection(DATABASE_PATH+CAR_DATABASE_NAME);
             System.out.println("Database opened successfully.");
         } catch(Exception e) {
@@ -150,9 +156,14 @@ public class DatabaseManager {
             preparedStatement.setString(1, make);
             preparedStatement.setString(2,model);
             ResultSet resultSet = preparedStatement.executeQuery();
-            String reg = resultSet.getString(1);
-            String message=Car_Info_By_Reg_Num(reg);
-            return message;
+            //String reg = resultSet.getString(1);
+            String ans="";
+            while (resultSet.next()){
+                String reg=resultSet.getString(1);
+                String message=Car_Info_By_Reg_Num(reg);
+                ans+=message+"]";
+            }
+            return ans;
         } catch (SQLException e) {
             System.out.println("Can't return any car with this make and model for the user...\n"+e.getMessage());
             return "";

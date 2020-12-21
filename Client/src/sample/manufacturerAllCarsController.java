@@ -9,9 +9,10 @@ import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -28,11 +29,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class viewAllCarsController implements Initializable {
+public class manufacturerAllCarsController implements Initializable {
     public static String SOURCE_PATH="Resources//";
+    List<String> carInfo=new ArrayList<>();
+    //public String msg="";
     Stage stage;
     @FXML
     public ListView listView;
+    @FXML
+    public Button edit,delete;
 
     ClientManage client;
 
@@ -138,32 +143,12 @@ public class viewAllCarsController implements Initializable {
 
     public void setCarsInfoInListView()
     {
-        /*client.handleMessage("allCarsMsg/e");
-        while(true){
-            if(client.mesg.equals("")){
-                continue;
-            }
-            else if(client.mesg.equals("Successful_update")){
-                List<String> carInfo=new ArrayList<>();
-                carInfo=client.info;
-                listView.getItems().clear();
-                System.out.println("Carinfo size: "+carInfo.size());
-                for(String msg: carInfo){
-                    String[] strings=msg.split("/");
-                    AnchorPane pane=new AnchorPane();
-                    pane=createPane(strings[1],strings[2],strings[3],strings[4],strings[5],strings[6],strings[7],strings[8]);
-                    listView.getItems().add(pane);
-                }
-                break;
-            }
-        }*/
-        //client.handleMessage("allCarsMsg/e");
         client.info=new ArrayList<>();
         client.sendToServer("carsInfo/e");
         new Thread(()->{
             try {
-                Thread.sleep(300);
-                List<String> carInfo=new ArrayList<>();
+                Thread.sleep(200);
+                carInfo=new ArrayList<>();
                 carInfo=client.info;
                 Platform.runLater(()->{
                     listView.getItems().clear();
@@ -183,21 +168,98 @@ public class viewAllCarsController implements Initializable {
             }
         }).start();
     }
+    public void editButtonPressed(ActionEvent actionEvent) throws IOException {
+        if(listView.getSelectionModel().getSelectedItem()==null){
+            createAlert("Select a Car to edit it's information.");
+        }
+        else{
+            int i=listView.getSelectionModel().getSelectedIndex();
+            FXMLLoader loader=new FXMLLoader(getClass().getResource("../FXMLS/manufacturerEditCar.fxml"));
+            Parent root=loader.load();
+            manufacturerEditController controller=loader.getController();
+            Stage primaryStage=new Stage();
+            controller.setClient(client);
+            primaryStage.setTitle("Edit Car Information");
+            primaryStage.setScene(new Scene(root));
+            controller.setStage(primaryStage);
+            controller.setController(this);
+            String inf=carInfo.get(i);
+            String[] strings=inf.split("/");
+            controller.reg.setText(strings[1]);controller.madeYear.setText(strings[2]);
+            if(strings[3].equals("null")){
+                controller.colour1.setText("");
+            }
+            else{
+                controller.colour1.setText(strings[3]);
+            }
+            if(strings[4].equals("null")){
+                controller.colour2.setText("");
+            }
+            else{
+                controller.colour2.setText(strings[4]);
+            }
+            if(strings[5].equals("null")){
+                controller.colour3.setText("");
+            }
+            else{
+                controller.colour3.setText(strings[5]);
+            }
+            controller.makeCar.setText(strings[6]);controller.modelCar.setText(strings[7]);controller.price.setText(strings[8]);
+            controller.reg.setDisable(true);
+            primaryStage.show();
+            /*new Thread(()->{
+                try {
+                    Thread.sleep(300);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });*/
+            //setCarsInfoInListView();
+        }
+    }
+    public void deleteButtonPressed(ActionEvent actionEvent){
+        if(listView.getSelectionModel().getSelectedItem()==null){
+            createAlert("Select a Car to delete.");
+        }
+        else{
+            int i=listView.getSelectionModel().getSelectedIndex();
+            String inf=carInfo.get(i);
+            String[] strings=inf.split("/");
+            client.sendToServer("delete/"+strings[1]);
+            new Thread(()->{
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+            setCarsInfoInListView();
+        }
+    }
 
     public void backButtonPressed(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/FXMLS/viewer_Menu.fxml"));
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/FXMLS/manufacturerMenu.fxml"));
         Parent root=loader.load();
-        viewerMenuController controller=loader.getController();
+        manufacturerMenuController controller=loader.getController();
         controller.setClient(client);
         Stage primaryStage=new Stage();
-        primaryStage.setTitle("Viewer Menu");
+        primaryStage.setTitle("Manufacturer Menu");
         primaryStage.setScene(new Scene(root));
         controller.setStage(primaryStage);
         primaryStage.show();
         stage.close();
     }
+
     public void refreshButtonPressed(ActionEvent actionEvent){
         setCarsInfoInListView();
+    }
+
+    private void createAlert(String message) {
+        Platform.runLater(() -> {
+            Alert a = new Alert(Alert.AlertType.WARNING);
+            a.setContentText(message);
+            a.show();
+        });
     }
 
     @Override

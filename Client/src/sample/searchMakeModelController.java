@@ -18,18 +18,18 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
-public class searchRegController implements Initializable {
-    @FXML
-    TextField regNo;
+public class searchMakeModelController implements Initializable {
     @FXML
     Button search;
+    @FXML
+    public TextField carMake,carModel;
     @FXML
     ListView listView;
 
@@ -38,39 +38,62 @@ public class searchRegController implements Initializable {
     public static String SOURCE_PATH="Resources//";
 
     public void searchButtonPressed(ActionEvent actionEvent){
-        String reg=regNo.getText();
-        if(reg.equals("") || reg.equals(null)){
-            createAlert("Enter a registration number.");
+        String make=carMake.getText();
+        String model=carModel.getText();
+        if(make.equals("") || model.equals("") || make.equals(null) || model.equals(null)){
+            createAlert("Enter both Make and Model information.");
         }
         else{
-            reg=reg.toUpperCase();
-            client.sendToServer("searchReg/"+reg);
-            while(true){
+            model=model.toUpperCase();
+            make=make.toUpperCase();
+            client.sendToServer("searchModel/"+make+"/"+model);
+            client.setController2(this);
+            if(!listView.getItems().isEmpty()){
+                listView.getItems().clear();
+            }
+            /*while(true){
                 if(client.getMesg().equals("")){
                     continue;
                 }
                 else{
-                    if(client.getMesg().equals("Car_Not_Found")){
-                        createAlert("Can't Find Any Car With the Registration Number");
-                        regNo.setText("");
+                    if(client.getMesg().equals("Model_Not_Found")){
+                        createAlert("Can't Find Any Car With the Given Make and Model Number");
+                        carMake.setText("");
+                        carModel.setText("");
                         client.mesg="";
                     }
                     else{
-                        regNo.setText("");
-                        if(!listView.getItems().isEmpty()){
-                            listView.getItems().remove(0);
+                        carMake.setText("");
+                        carModel.setText("");
+                        while(true){
+                            System.out.println("Gari show kortase.");
+                            String info=client.getMesg();
+                            String[] strings=info.split("/");
+                            AnchorPane anchorPane=new AnchorPane();
+                            anchorPane=createPane(strings[1],strings[2],strings[3],strings[4],strings[5],strings[6],strings[7],strings[8]);
+                            listView.getItems().add(anchorPane);
+
+                            if(client.mesg.equals(info)){
+                                client.mesg="";
+                                break;
+                            }
+                            else{
+                                continue;
+                            }
                         }
-                        String info=client.getMesg();
-                        String[] strings=info.split("/");
-                        AnchorPane anchorPane=new AnchorPane();
-                        anchorPane=createPane(strings[1],strings[2],strings[3],strings[4],strings[5],strings[6],strings[7],strings[8]);
-                        listView.getItems().add(anchorPane);
-                        client.mesg="";
+                        break;
                     }
-                    break;
                 }
-            }
+            }*/
         }
+    }
+
+    public void addToListView(String m){
+        String info=m;
+        String[] strings=info.split("/");
+        AnchorPane anchorPane=new AnchorPane();
+        anchorPane=createPane(strings[1],strings[2],strings[3],strings[4],strings[5],strings[6],strings[7],strings[8]);
+        listView.getItems().add(anchorPane);
     }
 
     public void backButtonPressed(ActionEvent actionEvent) throws IOException {
@@ -186,14 +209,13 @@ public class searchRegController implements Initializable {
         this.stage = stage;
     }
 
-    private void createAlert(String message) {
+    public void createAlert(String message) {
         Platform.runLater(() -> {
             Alert a = new Alert(Alert.AlertType.WARNING);
             a.setContentText(message);
             a.show();
         });
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

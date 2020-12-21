@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="383.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.manufacturerEditController">
+    <children>
+        <Label layoutX="223.0" layoutY="12.0" text="Enter Car Information">
+            <font>
+                <Font name="Bell MT Bold" size="18.0" />
+            </font></Label>
+        <Label layoutX="212.0" layoutY="19.0" text="________________________________________" />
+        <Label layoutX="22.0" layoutY="54.0" text="Enter Reg. No. :">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <TextField fx:id="reg" layoutX="130.0" layoutY="53.0" />
+        <Label layoutX="22.0" layoutY="181.0" text="Color-1            :">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <TextField fx:id="colour1" layoutX="130.0" layoutY="180.0" />
+        <Label layoutX="22.0" layoutY="243.0" text="Color-2            :">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <TextField fx:id="colour2" layoutX="130.0" layoutY="242.0" />
+        <Label layoutX="22.0" layoutY="118.0" text="Made in           :">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <TextField fx:id="madeYear" layoutX="130.0" layoutY="117.0" />
+        <Label layoutX="22.0" layoutY="306.0" text="Color-3            : ">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <TextField fx:id="colour3" layoutX="130.0" layoutY="305.0" />
+        <Label layoutX="312.0" layoutY="152.0" text="Car Model      : ">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <TextField fx:id="modelCar" layoutX="417.0" layoutY="152.0" />
+        <Label layoutX="312.0" layoutY="218.0" text="Price               : ">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <TextField fx:id="price" layoutX="417.0" layoutY="216.0" />
+        <Label layoutX="312.0" layoutY="89.0" text="Car Make        : ">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <TextField fx:id="makeCar" layoutX="417.0" layoutY="89.0" />
+        <Button layoutX="460.0" layoutY="271.0" mnemonicParsing="false" onAction="#saveButtonPressed" prefHeight="21.0" prefWidth="62.0" text="Save">
+            <font>
+                <Font name="System Bold Italic" size="12.0" />
+            </font>
+        </Button>
+    </children>
+</AnchorPane>

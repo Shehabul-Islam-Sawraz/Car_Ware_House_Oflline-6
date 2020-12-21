@@ -61,13 +61,14 @@ public class MessageHandler {
     }
     public String searchCarByMakeModel(String message){
         String[] strings=message.split("/");
-        if(ds.getCarByMakeModel(strings[6],strings[7])){
-            String info=ds.getCarInfoByMakeModel(strings[6],strings[7]);
-            return info;
+        if(ds.getCarByMakeModel(strings[1],strings[2])){
+            String info=ds.getCarInfoByMakeModel(strings[1],strings[2]);
+            String ans=info.substring(0,info.length()-1);
+            return ans;
         }
         else{
             System.out.println("Car not found with this registration number.");
-            return null;
+            return "null";
         }
     }
     public boolean deleteCar(String message){

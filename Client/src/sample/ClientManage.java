@@ -3,6 +3,7 @@ package sample;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 
+import javax.swing.plaf.TableHeaderUI;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -17,6 +18,8 @@ public class ClientManage implements Runnable {
     Thread t;
     public List<String> info=new ArrayList<>();
     String mesg="";
+    manufacturerAllCarsController controller;
+    searchMakeModelController controller2;
 
     ClientManage(){}
 
@@ -67,6 +70,7 @@ public class ClientManage implements Runnable {
                 if(string[0].equals("cars")){
                     info.add(msg);
                     System.out.println("Info added successfully.");
+                    System.out.println("Size of list: "+info.size());
                 }
                 else{
                     handleMessage(msg);
@@ -78,20 +82,28 @@ public class ClientManage implements Runnable {
         }
     }
 
-    private void handleMessage(String message){
+    public void handleMessage(String message){
         String[] strings=message.split("/");
         switch (strings[0]) {
             case "login":
                 if(strings[1].equals("Successful")){
                     //login successful hoile onno screen e jabe
                     //Ekta information alert banaite hbe keita show korbe successfully logged in
+                    mesg="login_successful";
+                    Platform.runLater(() -> {
+                        Alert a = new Alert(Alert.AlertType.INFORMATION);
+                        a.setContentText("Successfully logged in as Manufacturer");
+                        a.show();
+                    });
                 }
                 else{
                     if(strings[1].equals("Invalid_Pass")){
-                        createAlert("Password is Invalid");
+                        //createAlert("Password is Invalid");
+                        mesg="invalid_pass";
                     }
                     else if(strings[1].equals("No_Manufacturer")){
-                        createAlert("No manufacturer or user with this name");
+                        //createAlert("No manufacturer or user with this name");
+                        mesg="no_manufacturer";
                     }
                 }
                 break;
@@ -100,7 +112,15 @@ public class ClientManage implements Runnable {
                 if(strings[1].equals("Successful")){
                     //Updated er screen show korbe
                     info=new ArrayList<>();
-                    sendToServer("carsInfo/e");
+                    /*sendToServer("carsInfo/e");
+                    new Thread(()->{
+                        try {
+                            Thread.sleep(200);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    });*/
+                    controller.setCarsInfoInListView();
                 }
                 else if(strings[1].equals("Unsuccessful")){
                     createAlert("Update Unsuccessful");
@@ -132,11 +152,23 @@ public class ClientManage implements Runnable {
                 break;
 
             case "searchModel":
-                if(strings[1].equals("Model_Not_found")){
-                    createAlert("Can't Find Any Car With the Given Make and Model Number");
+                if(strings[1].equals("Model_Not_Found")){
+                    //createAlert("Can't Find Any Car With the Given Make and Model Number");
+                    mesg="Model_Not_Found";
+                    controller2.createAlert("Can't Find Any Car With the Given Make and Model Number");
+                    controller2.carMake.setText("");
+                    controller2.carModel.setText("");
+                    mesg="";
                 }
                 else{
+                    controller2.carMake.setText("");
+                    controller2.carModel.setText("");
                     //Car info show korbe oi make and model er
+                    mesg=message;
+                    Platform.runLater(()->{
+                        controller2.addToListView(message);
+                    });
+                    mesg="";
                 }
                 break;
 
@@ -144,13 +176,20 @@ public class ClientManage implements Runnable {
                 if(strings[1].equals("Successful")){
                     //Ekta information alert show korbe j Deleted successfully
                     info=new ArrayList<>();
-                    sendToServer("carsInfo/e");
+                    //sendToServer("carsInfo/e");
                 }
                 else{
                     createAlert("Can't Delete the Car Successfully");
                 }
                 break;
         }
+    }
+
+    public void setController(manufacturerAllCarsController controller){
+        this.controller=controller;
+    }
+    public void setController2(searchMakeModelController controller){
+        this.controller2=controller;
     }
 
     public String getMesg(){
