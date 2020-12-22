@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="532.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.viewAllCarsController">
+<AnchorPane prefHeight="532.0" prefWidth="506.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.viewAllCarsController">
    <children>
       <Label alignment="CENTER" layoutX="186.0" layoutY="4.0" prefHeight="34.0" prefWidth="147.0" text="Car Info">
          <font>
@@ -17,22 +17,22 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <ListView fx:id="listView" layoutX="95.0" layoutY="48.0" prefHeight="433.0" prefWidth="330.0">
+      <ListView fx:id="listView" layoutX="23.0" layoutY="46.0" prefHeight="476.0" prefWidth="390.0">
          <padding>
             <Insets bottom="10.0" />
          </padding>
       </ListView>
-      <Button layoutX="439.0" layoutY="487.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="25.0" prefWidth="62.0" text="Back">
+      <Button layoutX="432.0" layoutY="391.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="25.0" prefWidth="62.0" text="Back">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="20.0" layoutY="487.0" mnemonicParsing="false" onAction="#refreshButtonPressed" text="Refresh">
+      <Button layoutX="433.0" layoutY="280.0" mnemonicParsing="false" onAction="#refreshButtonPressed" text="Refresh">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="231.0" layoutY="487.0" mnemonicParsing="false" onAction="#buyCarPressed" prefHeight="25.0" prefWidth="58.0" text="Buy">
+      <Button layoutX="434.0" layoutY="174.0" mnemonicParsing="false" onAction="#buyCarPressed" prefHeight="25.0" prefWidth="58.0" text="Buy">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>

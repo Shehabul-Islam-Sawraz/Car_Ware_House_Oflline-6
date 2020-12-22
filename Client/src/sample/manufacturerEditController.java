@@ -51,7 +51,6 @@ public class manufacturerEditController implements Initializable {
         else{
             regNo=regNo.toUpperCase();carMake=carMake.toUpperCase();carModel=carModel.toUpperCase();
             String inf=regNo+"/"+yearMade+"/"+color1+"/"+color2+"/"+color3+"/"+carMake+"/"+carModel+"/"+prc;
-            //controller.msg=inf;
             client.sendToServer("update/"+inf);
             new Thread(()->{
                 try {
@@ -61,7 +60,6 @@ public class manufacturerEditController implements Initializable {
                 }
             }).start();
         }
-        //controller.msg="updated";
         stage.close();
         return;
     }

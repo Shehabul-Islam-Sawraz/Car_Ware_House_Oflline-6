@@ -55,7 +55,6 @@ public class addCarController implements Initializable {
         else{
             regNo=regNo.toUpperCase();carMake=carMake.toUpperCase();carModel=carModel.toUpperCase();
             client.sendToServer("addCar/"+regNo+"/"+yearMade+"/"+color1+"/"+color2+"/"+color3+"/"+carMake+"/"+carModel+"/"+prc);
-            //stage.close();
             reg.setText("");madeYear.setText("");
             colour1.setText("");colour2.setText("");colour3.setText("");
             makeCar.setText("");modelCar.setText("");price.setText("");

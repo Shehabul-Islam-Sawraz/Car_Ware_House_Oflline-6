@@ -12,22 +12,19 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class viewerMenuController implements Initializable {
     @FXML
-    Button viewAll,searchReg,searchModel,buyCar;
+    Button viewAll,searchReg,searchModel;
     Stage stage;
     ClientManage client;
     public void viewAllPressed(ActionEvent actionEvent) throws IOException {
-        //Shob car er info dekhabe and onno ekta fxml e jabe
         FXMLLoader loader=new FXMLLoader(getClass().getResource("../FXMLS/viewAllCars.fxml"));
         Parent root=loader.load();
         viewAllCarsController controller=loader.getController();
         Stage primaryStage=new Stage();
         controller.setClient(client);
-        //client.setController2(controller);
         primaryStage.setTitle("All Cars Information");
         primaryStage.setScene(new Scene(root));
         controller.setStage(primaryStage);
@@ -37,14 +34,11 @@ public class viewerMenuController implements Initializable {
             Platform.exit();
         });
         stage.close();
-        //client.info=new ArrayList<>();
-        //client.sendToServer("carsInfo/e");
         controller.setCarsInfoInListView();
         primaryStage.show();
     }
 
     public void searchRegPressed(ActionEvent actionEvent) throws IOException {
-        //Car search korbe reg number die and onno fxml e jabe
         FXMLLoader loader=new FXMLLoader(getClass().getResource("../FXMLS/search_Reg.fxml"));
         Parent root=loader.load();
         searchRegController controller=loader.getController();
@@ -63,7 +57,6 @@ public class viewerMenuController implements Initializable {
     }
 
     public void searchModelPressed(ActionEvent actionEvent) throws IOException {
-        // Car search korbe model make number die and onno fxml e jabe
         FXMLLoader loader=new FXMLLoader(getClass().getResource("../FXMLS/searchMakeModel.fxml"));
         Parent root=loader.load();
         searchMakeModelController controller=loader.getController();
@@ -79,14 +72,6 @@ public class viewerMenuController implements Initializable {
         });
         stage.close();
         primaryStage.show();
-    }
-
-    public void buyCarPressed(ActionEvent actionEvent){
-        try {
-            viewAllPressed(actionEvent);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void logOutPressed(ActionEvent actionEvent) throws IOException {
@@ -115,7 +100,6 @@ public class viewerMenuController implements Initializable {
         this.client=client;
         System.out.println("Size of array in menuController is: "+client.info.size());
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

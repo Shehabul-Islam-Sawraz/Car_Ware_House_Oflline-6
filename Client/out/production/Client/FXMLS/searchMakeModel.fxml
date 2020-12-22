@@ -19,8 +19,8 @@
       <TextField fx:id="carMake" layoutX="170.0" layoutY="34.0" prefHeight="25.0" prefWidth="188.0" />
       <TextField fx:id="carModel" layoutX="170.0" layoutY="74.0" prefHeight="25.0" prefWidth="188.0" />
       <Button fx:id="search" layoutX="395.0" layoutY="54.0" mnemonicParsing="false" onAction="#searchButtonPressed" prefHeight="25.0" prefWidth="69.0" text="Search" />
-      <ListView fx:id="listView" layoutX="100.0" layoutY="120.0" prefHeight="170.0" prefWidth="320.0" />
-      <Button layoutX="444.0" layoutY="292.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="25.0" prefWidth="53.0" text="Back">
+      <ListView fx:id="listView" layoutX="65.0" layoutY="116.0" prefHeight="170.0" prefWidth="390.0" />
+      <Button layoutX="449.0" layoutY="297.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="25.0" prefWidth="53.0" text="Back">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>

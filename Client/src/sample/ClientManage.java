@@ -2,8 +2,6 @@ package sample;
 
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
-
-import javax.swing.plaf.TableHeaderUI;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -87,8 +85,6 @@ public class ClientManage implements Runnable {
         switch (strings[0]) {
             case "login":
                 if(strings[1].equals("Successful")){
-                    //login successful hoile onno screen e jabe
-                    //Ekta information alert banaite hbe keita show korbe successfully logged in
                     mesg="login_successful";
                     Platform.runLater(() -> {
                         Alert a = new Alert(Alert.AlertType.INFORMATION);
@@ -98,11 +94,9 @@ public class ClientManage implements Runnable {
                 }
                 else{
                     if(strings[1].equals("Invalid_Pass")){
-                        //createAlert("Password is Invalid");
                         mesg="invalid_pass";
                     }
                     else if(strings[1].equals("No_Manufacturer")){
-                        //createAlert("No manufacturer or user with this name");
                         mesg="no_manufacturer";
                     }
                 }
@@ -110,16 +104,7 @@ public class ClientManage implements Runnable {
 
             case "update":
                 if(strings[1].equals("Successful")){
-                    //Updated er screen show korbe
                     info=new ArrayList<>();
-                    /*sendToServer("carsInfo/e");
-                    new Thread(()->{
-                        try {
-                            Thread.sleep(200);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    });*/
                     controller.setCarsInfoInListView();
                 }
                 else if(strings[1].equals("Unsuccessful")){
@@ -129,7 +114,6 @@ public class ClientManage implements Runnable {
 
             case "addCar":
                 if(strings[1].equals("Successful")){
-                    //Add korar screen show korbe
                     info=new ArrayList<>();
                     sendToServer("carsInfo/e");
                 }
@@ -140,12 +124,10 @@ public class ClientManage implements Runnable {
 
             case "searchReg":
                 if(strings[1].equals("Reg_Not_Found")){
-                    //createAlert("Can't Find Any Car With the Registration Number");
                     mesg="Car_Not_Found";
                     System.out.println("Mesg set to: "+mesg);
                 }
                 else{
-                    //Car Info show korbe oi reg number er
                     mesg=message;
                     System.out.println("Mesg set to: "+mesg);
                 }
@@ -153,7 +135,6 @@ public class ClientManage implements Runnable {
 
             case "searchModel":
                 if(strings[1].equals("Model_Not_Found")){
-                    //createAlert("Can't Find Any Car With the Given Make and Model Number");
                     mesg="Model_Not_Found";
                     controller2.createAlert("Can't Find Any Car With the Given Make and Model Number");
                     controller2.carMake.setText("");
@@ -163,7 +144,6 @@ public class ClientManage implements Runnable {
                 else{
                     controller2.carMake.setText("");
                     controller2.carModel.setText("");
-                    //Car info show korbe oi make and model er
                     mesg=message;
                     Platform.runLater(()->{
                         controller2.addToListView(message);
@@ -174,9 +154,7 @@ public class ClientManage implements Runnable {
 
             case "delete":
                 if(strings[1].equals("Successful")){
-                    //Ekta information alert show korbe j Deleted successfully
                     info=new ArrayList<>();
-                    //sendToServer("carsInfo/e");
                 }
                 else{
                     createAlert("Can't Delete the Car Successfully");

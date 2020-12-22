@@ -12,7 +12,7 @@
          </font>
       </Label>
       <TextField fx:id="regNo" layoutX="250.0" layoutY="34.0" prefHeight="25.0" prefWidth="220.0" />
-      <ListView fx:id="listView" layoutX="95.0" layoutY="114.0" prefHeight="170.0" prefWidth="330.0" />
+      <ListView fx:id="listView" layoutX="62.0" layoutY="109.0" prefHeight="170.0" prefWidth="390.0" />
       <Button fx:id="search" layoutX="220.0" layoutY="71.0" mnemonicParsing="false" onAction="#searchButtonPressed" prefHeight="25.0" prefWidth="60.0" text="Search">
          <font>
             <Font name="System Italic" size="12.0" />

@@ -46,17 +46,7 @@
             <Font size="13.0" />
          </font>
       </Button>
-      <Label layoutX="40.0" layoutY="225.0" text="4.">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Label>
-      <Button fx:id="buyCar" layoutX="67.0" layoutY="226.0" mnemonicParsing="false" onAction="#buyCarPressed" prefHeight="29.0" prefWidth="185.0" text="Buy a Car">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Button>
-      <Button layoutX="417.0" layoutY="274.0" mnemonicParsing="false" onAction="#logOutPressed" text="Log Out">
+      <Button layoutX="414.0" layoutY="272.0" mnemonicParsing="false" onAction="#logOutPressed" text="Log Out">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
