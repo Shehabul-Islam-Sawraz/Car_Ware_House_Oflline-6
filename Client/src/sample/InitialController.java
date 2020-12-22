@@ -55,6 +55,11 @@ public class InitialController implements Initializable {
                 primaryStage.setTitle("Viewer Menu");
                 primaryStage.setScene(new Scene(root));
                 controller.setStage(primaryStage);
+                primaryStage.setOnCloseRequest(event -> {
+                    System.out.println("Stage is closing");
+                    client.stop();
+                    Platform.exit();
+                });
                 stage.close();
                 primaryStage.show();
             }
@@ -74,6 +79,11 @@ public class InitialController implements Initializable {
                             primaryStage.setTitle("Manufacturer Menu");
                             primaryStage.setScene(new Scene(root));
                             controller.setStage(primaryStage);
+                            primaryStage.setOnCloseRequest(event -> {
+                                System.out.println("Stage is closing");
+                                client.stop();
+                                Platform.exit();
+                            });
                             stage.close();
                             primaryStage.show();
                             client.mesg="";

@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -25,6 +26,11 @@ public class Main extends Application {
         primaryStage.setTitle("Car Ware House");
         primaryStage.setScene(new Scene(root));
         controller.setStage(primaryStage);
+        primaryStage.setOnCloseRequest(event -> {
+            System.out.println("Stage is closing");
+            client.stop();
+            Platform.exit();
+        });
         primaryStage.show();
     }
     public static void main(String[] args) {

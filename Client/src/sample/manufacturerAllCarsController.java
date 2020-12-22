@@ -246,6 +246,11 @@ public class manufacturerAllCarsController implements Initializable {
         primaryStage.setTitle("Manufacturer Menu");
         primaryStage.setScene(new Scene(root));
         controller.setStage(primaryStage);
+        primaryStage.setOnCloseRequest(event -> {
+            System.out.println("Stage is closing");
+            client.stop();
+            Platform.exit();
+        });
         primaryStage.show();
         stage.close();
     }

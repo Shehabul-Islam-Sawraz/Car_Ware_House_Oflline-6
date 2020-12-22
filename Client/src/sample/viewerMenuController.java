@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,6 +31,11 @@ public class viewerMenuController implements Initializable {
         primaryStage.setTitle("All Cars Information");
         primaryStage.setScene(new Scene(root));
         controller.setStage(primaryStage);
+        primaryStage.setOnCloseRequest(event -> {
+            System.out.println("Stage is closing");
+            client.stop();
+            Platform.exit();
+        });
         stage.close();
         //client.info=new ArrayList<>();
         //client.sendToServer("carsInfo/e");
@@ -47,6 +53,11 @@ public class viewerMenuController implements Initializable {
         primaryStage.setTitle("Search By Registration");
         primaryStage.setScene(new Scene(root));
         controller.setStage(primaryStage);
+        primaryStage.setOnCloseRequest(event -> {
+            System.out.println("Stage is closing");
+            client.stop();
+            Platform.exit();
+        });
         stage.close();
         primaryStage.show();
     }
@@ -61,12 +72,21 @@ public class viewerMenuController implements Initializable {
         primaryStage.setTitle("Search By Make & Model");
         primaryStage.setScene(new Scene(root));
         controller.setStage(primaryStage);
+        primaryStage.setOnCloseRequest(event -> {
+            System.out.println("Stage is closing");
+            client.stop();
+            Platform.exit();
+        });
         stage.close();
         primaryStage.show();
     }
 
     public void buyCarPressed(ActionEvent actionEvent){
-
+        try {
+            viewAllPressed(actionEvent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void logOutPressed(ActionEvent actionEvent) throws IOException {
@@ -78,6 +98,11 @@ public class viewerMenuController implements Initializable {
         primaryStage.setTitle("Car Ware House");
         primaryStage.setScene(new Scene(root));
         controller.setStage(primaryStage);
+        primaryStage.setOnCloseRequest(event -> {
+            System.out.println("Stage is closing");
+            client.stop();
+            Platform.exit();
+        });
         primaryStage.show();
         stage.close();
     }

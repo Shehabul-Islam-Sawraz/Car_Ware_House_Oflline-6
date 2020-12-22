@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,6 +30,11 @@ public class manufacturerMenuController implements Initializable {
         primaryStage.setTitle("All Cars Information");
         primaryStage.setScene(new Scene(root));
         controller.setStage(primaryStage);
+        primaryStage.setOnCloseRequest(event -> {
+            System.out.println("Stage is closing");
+            client.stop();
+            Platform.exit();
+        });
         stage.close();
         controller.setCarsInfoInListView();
         primaryStage.show();
@@ -43,6 +49,11 @@ public class manufacturerMenuController implements Initializable {
         primaryStage.setTitle("Edit Car Information");
         primaryStage.setScene(new Scene(root));
         controller.setStage(primaryStage);
+        primaryStage.setOnCloseRequest(event -> {
+            System.out.println("Stage is closing");
+            client.stop();
+            Platform.exit();
+        });
         stage.close();
         primaryStage.show();
     }
@@ -56,6 +67,11 @@ public class manufacturerMenuController implements Initializable {
         primaryStage.setTitle("Car Ware House");
         primaryStage.setScene(new Scene(root));
         controller.setStage(primaryStage);
+        primaryStage.setOnCloseRequest(event -> {
+            System.out.println("Stage is closing");
+            client.stop();
+            Platform.exit();
+        });
         primaryStage.show();
         stage.close();
     }
